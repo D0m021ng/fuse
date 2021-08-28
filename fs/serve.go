@@ -1249,6 +1249,7 @@ func (c *Server) handleRequest(ctx context.Context, node Node, snode *serveNode,
 			return err
 		}
 		s.Handle = c.saveHandle(h2)
+		s.Flags = fuse.OpenResponseFlags(r.Flags)
 		done(s)
 		r.Respond(s)
 		return nil

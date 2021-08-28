@@ -156,6 +156,7 @@ func (e *MountpointDoesNotExistError) Error() string {
 func Mount(dir string, options ...MountOption) (*Conn, error) {
 	conf := mountConfig{
 		options: make(map[string]string),
+		initFlags: InitAtomicTrunc,
 	}
 	for _, option := range options {
 		if err := option(&conf); err != nil {
