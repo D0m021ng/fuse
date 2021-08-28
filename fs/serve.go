@@ -23,9 +23,9 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-const (
-	attrValidTime  = 1 * time.Minute
-	entryValidTime = 1 * time.Minute
+var (
+	AttrValidTime  = 1 * time.Minute
+	EntryValidTime = 1 * time.Minute
 )
 
 // TODO: FINISH DOCS
@@ -253,7 +253,7 @@ type NodeRemovexattrer interface {
 var startTime = time.Now()
 
 func nodeAttr(ctx context.Context, n Node, attr *fuse.Attr) error {
-	attr.Valid = attrValidTime
+	attr.Valid = AttrValidTime
 	attr.Nlink = 1
 	attr.Atime = startTime
 	attr.Mtime = startTime
@@ -893,7 +893,7 @@ func (e handleNotReaderError) Errno() fuse.Errno {
 }
 
 func initLookupResponse(s *fuse.LookupResponse) {
-	s.EntryValid = entryValidTime
+	s.EntryValid = EntryValidTime
 }
 
 type logDuplicateRequestID struct {
