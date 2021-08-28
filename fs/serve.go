@@ -1256,7 +1256,7 @@ func (c *Server) handleRequest(ctx context.Context, node Node, snode *serveNode,
 	case *fuse.GetxattrRequest:
 		n, ok := node.(NodeGetxattrer)
 		if !ok {
-			return syscall.ENOTSUP
+			return syscall.ENOSYS
 		}
 		s := &fuse.GetxattrResponse{}
 		err := n.Getxattr(ctx, r, s)
